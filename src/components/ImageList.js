@@ -18,7 +18,7 @@ const ImageList = ({data}) => {
                             return (
                               
                                  <div className='item' key={index}>
-                               
+{/*                                
                                <ReactPlayer
                                   className='vertical-view__media'
                                   url={Data?.data?.media?.reddit_video.fallback_url}
@@ -28,20 +28,22 @@ const ImageList = ({data}) => {
                                   playing={false}
                                   volume={1}
                                   onReady={() => console.log('Video is ready')}
-                                />
+                                /> */}
                                 </div>
                             )
                         } else if(Data?.data?.post_hint === "image") {
                             return(
                                 <div className='item' key={index}>
-                                <img
+                                {/* <img
                                 src={(Data?.data?.preview?.images[0]?.resolutions[4] ||
                                     Data?.data?.preview?.images[0]?.resolutions[3] ||
                                     Data?.data?.preview?.images[0]?.resolutions[2] ||
                                     Data?.data?.preview?.images[0]?.resolutions[1] ||
                                     Data?.data?.preview?.images[0]?.resolutions[0])?.url?.replace(/&amp;/g, '&')}
                                 alt={Data.data.title}
-                            />
+                            /> */}
+
+                            <div>{Data?.data?.preview?.images[0]?.resolutions[4]?.url}</div>
                             </div>
                             )
 
