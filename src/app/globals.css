@@ -15,6 +15,7 @@
   display: flex;
   justify-content:space-around;
   align-items: center;
+  
 }
 
 .searchInput input {
@@ -76,3 +77,46 @@
   margin-bottom: 30px;
 
 }
+
+.searchResults {
+  position: absolute;
+  top: 60px;
+  left: 12%;
+  background: white;
+  width: 400px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  z-index: 10;
+  height: 70%;
+  overflow-y: auto;
+}
+
+.searchResultItem {
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  width: 100%;
+}
+.searchResultItem:hover {
+  background: #f2f2f2;
+  color: #000;
+}
+
+.searchResultItemLogo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: red;
+}
+
+.itemtitleanddesc {
+  display: block;
+  width: 100%;
+  margin-left: 10px;
+}
+
+
+
