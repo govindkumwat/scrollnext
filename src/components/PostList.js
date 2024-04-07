@@ -1,28 +1,19 @@
 'use client'
-
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Masonry from 'react-masonry-css'
 import axios from 'axios'
 import ImageList from './ImageList'
-import { useParams } from 'next/navigation'
 
-async function getData(params) {
-  const res = await fetch(`https://www.reddit.com/r/${params}.json`)
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
- 
-  return res.json()
-}
 
-const PostList = async() => {
-  const params = useParams()
-  const intialData = await getData(params?.slug)
+
+const PostList = ({intialData,  params}) => {
     const [page, setPage] = useState(1)
     const [isBottom, setIsBottom] = useState(false);
     const [data, setdata] = useState(intialData?.children || [])
     const [after,setAfter] = useState(intialData?.after)
+
+    console.log(params)
 
     useEffect(() => {
         function handleScroll() {

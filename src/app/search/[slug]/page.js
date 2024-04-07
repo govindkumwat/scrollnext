@@ -1,16 +1,22 @@
-'use client'
-
+'use server'
 import React from 'react'
 import PostList from '@/components/PostList'
 import Navbar from '@/components/Navbar'
 import SearchHeader from '@/components/SearchHeader'
 
 
+async function getData(params) {
+  const res = await fetch(`https://www.reddit.com/r/${params}.json`)
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
 
 const page = async() => {
    
-   
-
+  const intialData = await getData(params?.slug)
 
   return (
     <div>
