@@ -1,53 +1,75 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import axios from 'axios';
+import axios from 'axios'
+import Link from 'next/link';
+import React, { useDeferredValue, useEffect, useState } from 'react'
+
+const formatSubscribers = (number) => {
+  if (number >= 1000000) {
+    return (number / 1000000).toFixed(1) + 'm';
+  } else if (number >= 1000) {
+    return (number / 1000).toFixed(1) + 'k';
+  } else {
+    return number?.toString();
+  }
+}
 
 const Navbar = () => {
 
-  const [inputValue, setInputValue] = React.useState('');
-  const [results, setResults] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [inputValue, setInputValue] = useState('')
+  const [searchResult, setSearchResult] = useState([])
+  const deferredQuery = useDeferredValue(inputValue);
 
   useEffect(() => {
-    if (inputValue && inputValue.length > 2) {
-      setLoading(true);
-      axios(`https://www.reddit.com/subreddits/search.json?q=${inputValue}&include_over_18=on&limit=150&t=all`)
-        .then((data) => {
-          setResults(data?.data?.data?.children)
-          setLoading(false)
-        })
-        .catch((error) => {
-          // Handle the error here
-          console.error("Error fetching data:", error);
-          setLoading(false);
-          // You can also set an error state or display an error message to the user.
-        });
+    if(deferredQuery.length > 2) {
+      axios(`https://www.reddit.com/subreddits/search.json?q=${deferredQuery}&include_over_18=${'on'}&limit=150&t=all`)
+      .then((res) => {
+          setSearchResult(res?.data?.data?.children)
+      })
     }
-  }, [inputValue])
+  
+  },[deferredQuery])
 
   return (
     <div className='navbarContainer'>
-      <div className='searchInput'>
-        <input placeholder='Search Here..' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-        <div className='searchResults'>
-          {!loading ? results.map((result, index) => {
-            return <div key={index} className='searchResultItem'>
-              <div className='itemLogo' ></div>
-              <div className='itemtitleanddesc'>
-                <p>{result?.data?.title}</p>
-                <p>{result?.data?.description}</p>
-              </div>
-
-              <div className='itemsubsand18plus'>
-                <p>{result?.data?.subscribers}</p>
-                <p>{result?.data?.over18 && '18+'}</p>
-              </div>
-             
-            </div>
-          }) : 'Loading...'}
+        <div className='searchInput'>
+          {/* add cross button in input box so user can erase the search term*/}
+            <input placeholder='Search Here..' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+            <button onClick={() =>{
+              setSearchResult([])
+              setInputValue('')
+            }} className='crossbtn'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
         </div>
-      </div>
+    {
+      searchResult?.length > 0 &&
+      <div className='searchResult'>
+          {/* limit search result to only 5 items */}
+            {searchResult?.map((item, index) => (
+              <Link href={`/search/${item.data.url.split('/')[2]}`} key={index}>
+                <div className='searchItems' >
+                  <div className='searchthumbs'>
+                    <img src={item?.data?.icon_img?.length > 0 ? item.data.icon_img : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ='}/>
+                  </div>
+                  <div className='titleanddescription'>
+                  <p className='SearchItemName'>{item.data.title}</p>
+                  <p className='searchItemDescription'>{item.data.public_description || item.data.description}</p>
+                  </div>
+                  <div className='subscribersandtype'>
+                    {/* convert subscribers number in k, m */}
+
+                  <p className='subscribers'>{formatSubscribers(item.data.subscribers)}</p>
+                  <p className='contentType'>{item.data.over18 ? 'NSFW' : ''}</p>
+                  </div>
+                </div>
+                </Link>
+            ))}
+        </div>
+    }
+        
+
+             
       <div className='navLogo'>SCROLLWAY</div>
       <div className='navSocial'>
         <div>

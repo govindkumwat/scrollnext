@@ -15,7 +15,11 @@
   display: flex;
   justify-content:space-around;
   align-items: center;
-  
+  /* position: relative; */
+}
+
+.searchInput {
+  position: relative;
 }
 
 .searchInput input {
@@ -25,6 +29,7 @@
   font-size: 16px;
   outline: none;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  /* position: relative; */
 }
 
 .navLogo {
@@ -56,6 +61,7 @@
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .my-masonry-grid {
@@ -78,45 +84,193 @@
 
 }
 
-.searchResults {
-  position: absolute;
-  top: 60px;
-  left: 12%;
-  background: white;
-  width: 400px;
-  padding: 10px;
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
-  z-index: 10;
-  height: 70%;
-  overflow-y: auto;
-}
 
-.searchResultItem {
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.3s;
+
+.searchResult {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 400px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  left: 200px;
+  background-color: white;
+  height: 500px;
+  overflow-y: auto;
+  padding: '10px';
+  z-index: 99;
+}
+
+.searchResult a {
+  text-decoration: none;
+}
+
+.searchItems {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid rgb(202, 202, 202);
+  color:  black;
+}
+
+.searchItems:hover {
+  background-color: #f5f5f5;
+}
+/* title should be in uppercase */
+.SearchItemName {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* limit description text to one line */
+.searchItemDescription {
+  font-size: 12px;
+  color: #666;
+  font-weight: 300;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.titleanddescription {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 70%;
+}
+
+.subscribersandtype {
+  float: left;
+  justify-content: end;
+  text-align: center;
+
+}
+
+
+.subscribersandtype p {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.contentType {
+  color: red;
+  font-size: 12px;
+}
+
+.searchthumbs img {
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  object-fit: contain; /* This will ensure that the images are scaled correctly */
+  border-radius: 4px; /* Optional: Adds rounded corners to the thumbnails */
+  margin-right: 10px; /* Adds some space to the right of the thumbnail */
+}
+
+.crossbtn {
+  background: none;
+  outline: none;
+  border: none;
+  position: absolute;
+  right: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.headerdetail {
+width: 80%;
+margin: auto;
+justify-content: center;
+margin-top: 10px;
+position: relative;
+margin-bottom: 20px;
+min-width: 100px;
+}
+
+.headerImage img{
+  margin: auto;
+  display: flex ;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+.headerText {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-}
-.searchResultItem:hover {
-  background: #f2f2f2;
-  color: #000;
-}
-
-.searchResultItemLogo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: red;
+  height: 100%;
+  z-index: 1;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 26px;
+  
 }
 
-.itemtitleanddesc {
-  display: block;
+.posttitle {
+  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  text-decoration: none;
+  color:  white;
+  padding: 2px;
+
+  
+  
+}
+
+/* little black shadow on hover effect for title*/
+
+
+.item:hover .posttitle {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  background-color: #040910;
+}
+
+.detailImage {
+  background-color: #040910;
   width: 100%;
-  margin-left: 10px;
+  height: 100%;
 }
 
+.detailImage img {
+  position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-drag: none;
+    background-color: #040910;
+}
 
+.detailText {
+ position: absolute;
+ bottom: 20px;
+ left: 20px;
+ color: white;
+ z-index: 99;
+}
 
+.detailCross {
+  font-size:  30px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  z-index: 99;
+  cursor: pointer;
+  font-weight: 700;
+}
