@@ -1,8 +1,8 @@
-'use server'
 import React from 'react'
 import PostList from '@/components/PostList'
 import Navbar from '@/components/Navbar'
 import SearchHeader from '@/components/SearchHeader'
+import { useParams } from 'next/navigation'
 
 
 async function getData(params) {
@@ -14,9 +14,20 @@ async function getData(params) {
   return res.json()
 }
 
-const page = async() => {
-   
-  const intialData = await getData(params?.slug)
+async function getAboutData(params) {
+  const res = await fetch(`https://www.reddit.com/r/${params}/about.json`)
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
+
+const page = async({params}) => {
+  console.log(params, 'params')
+  const data = await getData(params?.slug)
+  const about =  await getAboutData(params?.slug)
+
 
   return (
     <div>

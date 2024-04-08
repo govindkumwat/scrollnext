@@ -15,10 +15,7 @@ async function getData(params) {
  
 
 export default async function Home() {
-
   const params = 'pics'
-
-
   const data = await getData(params)
 
 

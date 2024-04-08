@@ -1,11 +1,41 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import Masonry from 'react-masonry-css'
-import ReactPlayer from 'react-player'
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import DetailPage from './DetailPage';
 
-const ImageList = ({ data }) => {
+
+const ImageList = ({ data, handlePopup }) => {
+    const {isOpen, onOpen, onClose} = useDisclosure();
+    const [selectedData, setSelectedData] = useState({});
+
+    
+    const openPopup = (permalink, title, url_overridden_by_dest) => {
+        setSelectedData({ permalink, title, url_overridden_by_dest });
+        window.history.replaceState(null, '', `/post${permalink}`) 
+        onOpen();
+    };
+
+
+   
     return (
-        <div className='postContentContainer'>
+        <>
+        <Modal 
+        size={'full'} 
+        isOpen={isOpen} 
+        onClose={onClose} 
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+            <DetailPage data={selectedData} closeButton={true} />
+        </>
+          )}
+        </ModalContent>
+      </Modal>
+
+         
+      <div className='postContentContainer'>
             <Masonry
                 breakpointCols={3}
                 className="my-masonry-grid"
@@ -23,8 +53,8 @@ const ImageList = ({ data }) => {
                         } else if (Data?.data?.post_hint === "image") {
                             return (
                                 //post title should be visible on hover
-                                <div className='item' key={index}>
-                                    <Link href={`/post/${Data.data.permalink}`} >
+                                <div className='item' key={index} onClick={() => openPopup(Data?.data?.permalink, Data?.data?.title, Data?.data?.url_overridden_by_dest)}>
+                                    {/* <Link href={`/post/${Data.data.permalink}`} > */}
                                         <img
                                             src={Data.data.url_overridden_by_dest}
                                         // src={(Data?.data?.preview?.images[0]?.resolutions[4] ||
@@ -35,7 +65,7 @@ const ImageList = ({ data }) => {
                                         // alt={Data.data.title}
                                         />
                                        <p className='posttitle'>{Data.data.title.replace(/&amp;/g, '&')}</p>
-                                    </Link>
+                                    {/* </Link> */}
                                 </div>
                             )
 
@@ -47,6 +77,8 @@ const ImageList = ({ data }) => {
 
 
         </div>
+
+      </>
 
     )
 }
