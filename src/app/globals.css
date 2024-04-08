@@ -14,10 +14,10 @@
 
 .navbarContainer {
   width: 100%;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;  
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
   padding: 16px 10px;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   /* position: relative; */
 }
@@ -51,8 +51,8 @@
 
 }
 
-.postContentContainer{
- padding: 10px 10%;
+.postContentContainer {
+  padding: 10px 10%;
 }
 
 .postContentContainer img {
@@ -69,20 +69,26 @@
 }
 
 .my-masonry-grid {
-  display: -webkit-box; /* Not needed if autoprefixing */
-  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: -webkit-box;
+  /* Not needed if autoprefixing */
+  display: -ms-flexbox;
+  /* Not needed if autoprefixing */
   display: flex;
-  margin-left: -10px; /* gutter size offset */
+  margin-left: -10px;
+  /* gutter size offset */
   width: auto;
 }
+
 .my-masonry-grid_column {
-  padding-left: 10px; /* gutter size */
+  padding-left: 10px;
+  /* gutter size */
   background-clip: padding-box;
-  
+
 }
 
 /* Style your items */
-.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+.my-masonry-grid_column>div {
+  /* change div to reference your elements you put in <Masonry> */
   background: grey;
   margin-bottom: 30px;
 
@@ -119,12 +125,13 @@
   align-items: center;
   padding: 0 20px;
   border-bottom: 1px solid rgb(202, 202, 202);
-  color:  black;
+  color: black;
 }
 
 .searchItems:hover {
   background-color: #f5f5f5;
 }
+
 /* title should be in uppercase */
 .SearchItemName {
   font-weight: 600;
@@ -168,11 +175,16 @@
 }
 
 .searchthumbs img {
-  width: 50px; /* Adjust the width as needed */
-  height: 50px; /* Adjust the height as needed */
-  object-fit: contain; /* This will ensure that the images are scaled correctly */
-  border-radius: 4px; /* Optional: Adds rounded corners to the thumbnails */
-  margin-right: 10px; /* Adds some space to the right of the thumbnail */
+  width: 50px;
+  /* Adjust the width as needed */
+  height: 50px;
+  /* Adjust the height as needed */
+  object-fit: contain;
+  /* This will ensure that the images are scaled correctly */
+  border-radius: 4px;
+  /* Optional: Adds rounded corners to the thumbnails */
+  margin-right: 10px;
+  /* Adds some space to the right of the thumbnail */
 }
 
 .crossbtn {
@@ -186,18 +198,18 @@
 }
 
 .headerdetail {
-width: 80%;
-margin: auto;
-justify-content: center;
-margin-top: 10px;
-position: relative;
-margin-bottom: 20px;
-min-width: 100px;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  margin-top: 10px;
+  position: relative;
+  margin-bottom: 20px;
+  min-width: 100px;
 }
 
-.headerImage img{
+.headerImage img {
   margin: auto;
-  display: flex ;
+  display: flex;
   max-width: 100%;
   object-fit: contain;
 }
@@ -216,21 +228,21 @@ min-width: 100px;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 26px;
-  
+
 }
 
 .posttitle {
-  
+
   position: absolute;
   bottom: 0;
   left: 0;
   opacity: 0;
   text-decoration: none;
-  color:  white;
+  color: white;
   padding: 2px;
 
-  
-  
+
+
 }
 
 /* little black shadow on hover effect for title*/
@@ -250,26 +262,26 @@ min-width: 100px;
 
 .detailImage img {
   position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-drag: none;
-    background-color: #040910;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
+  background-color: rgb(24, 24, 27);
 }
 
 .detailText {
- position: absolute;
- bottom: 20px;
- left: 20px;
- color: white;
- z-index: 99;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 99;
 }
 
 .detailCross {
-  font-size:  30px;
+  font-size: 30px;
   position: absolute;
   top: 20px;
   right: 20px;
