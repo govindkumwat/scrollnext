@@ -3,11 +3,19 @@ import DetailPage from '@/components/DetailPage'
 
 
 async function getSingle(params) {
-  const res = await fetch(`https://www.reddit.com/${params}.json`)
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+  try {
+    if(params) {
+      const res = await fetch(`https://www.reddit.com/${params}.json`);
+      if (!res.ok) {
+        throw new Error(`Failed to fetch data: ${res.status} - ${res.statusText}`);
+      }
+      return res.json();
+    }
+  
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to propagate it up the call stack.
   }
-  return res.json()
 }
 
 const page = async ({params, postData}) => {

@@ -5,12 +5,16 @@ import PostList from "@/components/PostList";
 
 
 async function getData(params) {
+  try {
   const res = await fetch(`https://www.reddit.com/r/${params}.json`)
   if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error('Failed to fetch data for you')
   }
  
   return res.json()
+} catch(error) {
+  console.log(error)
+}
 }
  
 

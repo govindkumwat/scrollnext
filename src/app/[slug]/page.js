@@ -6,29 +6,35 @@ import { useParams } from 'next/navigation'
 
 
 async function getData(params) {
+  try {
   const res = await fetch(`https://www.reddit.com/r/${params}.json`)
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
  
   return res.json()
+} catch (error) {
+  console.error('Error fetching data:', error);
+  throw error;
+}
 }
 
 async function getAboutData(params) {
-  const res = await fetch(`https://www.reddit.com/r/${params}/about.json`)
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+  try {
+    const res = await fetch(`https://www.reddit.com/r/${params}/about.json`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to be handled at a higher level
   }
- 
-  return res.json()
 }
-
 const page = async({params}) => {
-  console.log(params, 'params')
-  const data = await getData(params?.slug)
+  const data = params && await getData(params?.slug)
   const about =  await getAboutData(params?.slug)
-
-
+  
   return (
     <div>
           <meta property="og:title" content="Title Here" />

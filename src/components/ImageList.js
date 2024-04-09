@@ -21,8 +21,6 @@ const ImageList = ({ data, handlePopup }) => {
     };
 
 
-    console.log(isOpen, 'onOpen out')
-
    
     return (
         <>
