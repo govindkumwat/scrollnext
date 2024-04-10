@@ -1,5 +1,5 @@
 module.exports = {
     images: {
-        domains: ['i.redd.it', 'www.reddit.com', 'preview.redd.it'],
+        domains: ['i.redd.it', 'www.api.reddit.com', 'preview.redd.it', 'external-preview.redd.it'],
     },
   }

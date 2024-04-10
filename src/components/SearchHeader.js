@@ -7,9 +7,6 @@ import { useParams } from 'next/navigation'
 
 const SearchHeader = ({detail}) => {
 
-  console.log('deta', detail)
-
-
   return (
     <div className='headerdetail'>
     <div className='headerImage'>

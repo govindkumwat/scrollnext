@@ -1,17 +1,12 @@
 import React from 'react'
 import DetailPage from '@/components/DetailPage'
+import axios from 'axios';
 
 
 async function getSingle(params) {
   try {
-    if(params) {
-      const res = await fetch(`https://www.reddit.com/${params}.json`);
-      if (!res.ok) {
-        throw new Error(`Failed to fetch data: ${res.status} - ${res.statusText}`);
-      }
-      return res.json();
-    }
-  
+    const res = await axios(`https://api.reddit.com/${params?.slug[3]}.json`);
+    return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
     throw error; // Re-throw the error to propagate it up the call stack.
@@ -21,9 +16,10 @@ async function getSingle(params) {
 const page = async ({params, postData}) => {
 
 
-  const data = await getSingle(params?.slug[3])
+  const data = await getSingle(params)
   
   return (
+   
    <DetailPage data={data[0]?.data?.children[0]?.data} />
   )
 }

@@ -1,21 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import ImageList from './ImageList'
-import { QueryClientProvider, QueryClient, useQueryClient, useInfiniteQuery } from "@tanstack/react-query"
+import { useInfiniteQuery } from "@tanstack/react-query"
 import axios from 'axios';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-
-const PostList = ({ initialData, params }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+const QuerySearch = ({ initialData, params }) => {
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/r/${params}.json?after=${pageParam}` : `https://api.reddit.com/r/${params}.json`;
+        const url = pageParam ? `https://api.reddit.com/search.json?q=${params}&after=${pageParam}&include_over_18=true` : `https://api.reddit.com/search.json?q=${params}&&include_over_18=true`;
         const response = await axios.get(url);
         return response.data.data;
     };
-
-    const queryClient = useQueryClient();
 
     const {
         data,
@@ -52,16 +47,13 @@ const PostList = ({ initialData, params }) => {
 
     const postData = data ? data.pages.map(page => page.children).flat() : [];
 
-    const handlePopup = () => {
-        alert('true')
-        onOpen();
-    }
+
 
     return (
         <>
-            <ImageList data={postData} handlePopup={handlePopup} />
+            <ImageList data={postData}/>
         </>
     );
 }
 
-export default PostList;
+export default QuerySearch;

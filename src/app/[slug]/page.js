@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation'
 
 async function getData(params) {
   try {
-  const res = await fetch(`https://www.reddit.com/r/${params}.json`)
+  const res = await fetch(`https://api.reddit.com/r/${params}.json`)
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
@@ -21,7 +21,7 @@ async function getData(params) {
 
 async function getAboutData(params) {
   try {
-    const res = await fetch(`https://www.reddit.com/r/${params}/about.json`);
+    const res = await fetch(`https://api.reddit.com/r/${params}/about.json`);
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
     }

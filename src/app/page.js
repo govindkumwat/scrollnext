@@ -6,7 +6,7 @@ import PostList from "@/components/PostList";
 
 async function getData(params) {
   try {
-  const res = await fetch(`https://www.reddit.com/r/${params}.json`)
+  const res = await fetch(`https://www.api.reddits.com/r/${params}.json`)
   if (!res.ok) {
     throw new Error('Failed to fetch data for you')
   }
@@ -19,7 +19,7 @@ async function getData(params) {
  
 
 export default async function Home() {
-  const params = 'wallpaper'
+  const params = 'pics'
   const data = await getData(params)
 
 
