@@ -27,8 +27,7 @@ const PostList = ({ initialData, params }) => {
         queryFn: fetchPosts,
         getNextPageParam: (lastPage) => lastPage?.after,
         initialData: initialData, // Use initialData here
-        keepPreviousData: true,
-        staleTime: 60 * 1000,
+  
     });
 
     useEffect(() => {

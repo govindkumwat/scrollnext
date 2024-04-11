@@ -2,16 +2,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Masonry from 'react-masonry-css'
+import Video from 'next-video';
 
 
 const ImageList = ({ data }) => {
+
+    const breakpointColumnsObj = {
+        default: 4,
+        1100:  3,
+        700:  2,
+        500: 2,
+      };
 
    
     return (
         <>  
       <div className='postContentContainer'>
             <Masonry
-                breakpointCols={3}
+                breakpointCols={breakpointColumnsObj}
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column">
                 {
@@ -19,9 +27,7 @@ const ImageList = ({ data }) => {
                         if (Data?.data?.post_hint === "hosted:video" || Data?.data?.post_hint === "rich:video") {
                             return (
                                 <div className='item' key={index}>
-                                    <video  controls preload="auto" playsInline>
-                                        <source src={Data?.data?.post_hint == 'rich:video' ? Data?.data.preview?.reddit_video_preview?.fallback_url : Data?.data?.media?.reddit_video.fallback_url} type="video/mp4" />
-                                        </video>
+                                    <Video src={Data?.data?.post_hint == 'rich:video' ? Data?.data.preview?.reddit_video_preview?.fallback_url : Data?.data?.media?.reddit_video.fallback_url} />;
                                 </div>
                             )
                         } else if (Data?.data?.post_hint === "image") {
@@ -31,7 +37,7 @@ const ImageList = ({ data }) => {
                                 <div className='item' key={index} >
                                     {/* <Link href={`/post/${Data.data.permalink}`} > */}
                                         <Image width={1000} height={1000}
-                                             src={  Data?.data?.link_flair_text == ' GIF' ? Data.data.url_overridden_by_dest :
+                                             src={  Data?.data?.domain.includes('gif')? Data.data.url_overridden_by_dest :
                                         (Data?.data?.preview?.images[0]?.resolutions[4] ||
                                             Data?.data?.preview?.images[0]?.resolutions[3] ||
                                             Data?.data?.preview?.images[0]?.resolutions[2] ||

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useDeferredValue, useEffect, useState } from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { debounce } from 'lodash'; // Import debounce from Lodash
 
 
 const formatSubscribers = (number) => {
@@ -27,29 +28,47 @@ const Navbar = () => {
   const [backdrop, setBackdrop] = React.useState('blur')
 
   const handleOpen = () => {
+    setInputValue('')
+    setSearchResult([])
     onOpen();
   }
 
   const router = useRouter()
 
   useEffect(() => {
-    if (deferredQuery.length > 2) {
-      setLoading(true)
+    // Define your fetchData function
+    const fetchData = () => {
+      setLoading(true);
       axios(`https://api.reddit.com/subreddits/search.json?q=${deferredQuery}&include_over_18=${'on'}&limit=150&t=all`)
         .then((res) => {
-          setSearchResult(res?.data?.data?.children)
-          setLoading(false)
+          setSearchResult(res?.data?.data?.children);
+          setLoading(false);
         })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setLoading(false);
+        });
+    };
+
+    // Debounce the fetchData function with a delay of 300 milliseconds
+    const debouncedFetchData = debounce(fetchData, 300);
+
+    // Check if the input value length is greater than 2 before fetching data
+    if (deferredQuery.length > 2) {
+      debouncedFetchData();
     }
 
-  }, [deferredQuery])
-
+    // Cleanup function to cancel the debounce timer
+    return () => {
+      debouncedFetchData.cancel();
+    };
+  }, [deferredQuery]);
   return (
     <div className='navbarContainer'>
       <div className='searchInput'>
         {/* add cross button in input box so user can erase the search term*/}
 
-        <input placeholder='Search Here..' onClick={() => handleOpen()} />
+        <input placeholder='Search Here..' value={''} focusable='false' onClick={() => handleOpen()} />
         <button onClick={() => {
           setSearchResult([])
           setInputValue('')
