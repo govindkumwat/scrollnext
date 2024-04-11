@@ -2,7 +2,8 @@ import React from 'react'
 import PostList from '@/components/PostList'
 import Navbar from '@/components/Navbar'
 import SearchHeader from '@/components/SearchHeader'
-import { useParams } from 'next/navigation'
+
+
 
 
 async function getData(params) {
@@ -18,6 +19,12 @@ async function getData(params) {
   throw error;
 }
 }
+
+export const metadata = {
+  title: '...',
+  description: '...',
+}
+ 
 
 async function getAboutData(params) {
   try {
