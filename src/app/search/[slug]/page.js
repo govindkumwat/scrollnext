@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import QuerySearch from "@/components/QuerySearch";
+import SearchHeader from "@/components/SearchHeader";
 
 async function getData(params) {
   try {
@@ -24,6 +25,7 @@ const page = async(params) => {
 
     <>
     <Navbar/>
+    <SearchHeader detail={params?.params?.slug}/>
     <QuerySearch intialData = {data?.data} params={params?.params?.slug}/>
     </>
      
