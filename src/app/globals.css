@@ -340,7 +340,7 @@
   }
 
   .navSocial {
-    display: none;
+    opacity: 0;
   }
 
   .postContentContainer {
@@ -398,6 +398,8 @@
   margin: auto;
   left: 50%;
 transform: translateX(-50%);
+opacity: 1;
+
 }
 
 .bottonNavIcons {
