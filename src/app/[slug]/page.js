@@ -44,9 +44,7 @@ const page = async({params}) => {
   
   return (
     <div>
-          <meta property="og:title" content="Title Here" />
-<meta property="og:description" content="Description Here" />
-<meta property="og:image" content="image_url_here" />   
+           
       <Navbar/>
       <SearchHeader detail = {about?.data}/>
       <div className='headerTextContainer'>
