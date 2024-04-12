@@ -37,7 +37,7 @@ const ImageList = ({ data }) => {
                                 <div className='item' key={index} >
                                     {/* <Link href={`/post/${Data.data.permalink}`} > */}
                                         <Image width={1000} height={1000}
-                                             src={  Data?.data?.domain.includes('gif')? Data.data.url_overridden_by_dest :
+                                             src={  Data?.data?.url_overridden_by_dest?.includes('gif') ? Data.data.url_overridden_by_dest :
                                         (Data?.data?.preview?.images[0]?.resolutions[4] ||
                                             Data?.data?.preview?.images[0]?.resolutions[3] ||
                                             Data?.data?.preview?.images[0]?.resolutions[2] ||

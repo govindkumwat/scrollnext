@@ -24,7 +24,7 @@ async function getData(params) {
 
 export const generateMetadata = async ({ params }) => {
   try {
-    const res = await axios.get(`https://api.reddit.com/r/${params.slug}/about.json`);
+    const res = await axios.get(`https://api.reddit.com/r/${'Celebs'}/about.json`);
     if (!res.data) {
       throw new Error('Failed to fetch data');
     }
@@ -47,7 +47,7 @@ export const generateMetadata = async ({ params }) => {
 
 async function getAboutData(params) {
   try {
-    const res = await fetch(`https://api.reddit.com/r/${params}/about.json`);
+    const res = await fetch(`https://api.reddit.com/r/${'Celebs'}/about.json`);
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
     }
@@ -69,7 +69,7 @@ const page = async({params}) => {
       <Navbar/>
       <SearchHeader detail = {about?.data}/>
       <div className='headerTextContainer'>
-      <PostList intialData = {data?.data} params={params?.slug}/>
+      <PostList intialData = {data?.data} params={'Celebs'}/>
       <BottomNavigation/>
       </div>
     </div>
