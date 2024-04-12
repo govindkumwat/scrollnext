@@ -6,7 +6,6 @@ import QuerySearch from "@/components/QuerySearch";
 import SearchHeader from "@/components/SearchHeader";
 
 export const generateMetadata = async ({params}) => {
-  console.log(params, 'params')
   return {
     title: `${params.slug} on Scrollway`,
     description: `Search Results for ${params.slug}`,

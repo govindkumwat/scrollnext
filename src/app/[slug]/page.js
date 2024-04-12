@@ -24,12 +24,11 @@ async function getData(params) {
 
 export const generateMetadata = async ({ params }) => {
   try {
-    const res = await axios.get(`https://api.reddit.com/r/${'Celebs'}/about.json`);
+    const res = await axios.get(`https://api.reddit.com/r/${params.slug}/about.json`);
     if (!res.data) {
       throw new Error('Failed to fetch data');
     }
 
-    console.log('params', res.data.data);
 
     // Assuming you want to access the title from the first post in the subreddit
 
@@ -46,16 +45,16 @@ export const generateMetadata = async ({ params }) => {
  
 
 async function getAboutData(params) {
-  try {
-    const res = await fetch(`https://api.reddit.com/r/${'Celebs'}/about.json`);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
-    }
-    return res.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; // Re-throw the error to be handled at a higher level
-  }
+  // try {
+  //   const res = await fetch(`https://api.reddit.com/r/${params.slug}/about.json`);
+  //   if (!res.ok) {
+  //     throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+  //   }
+  //   return res.json();
+  // } catch (error) {
+  //   console.error('Error fetching data:', error);
+  //   throw error; // Re-throw the error to be handled at a higher level
+  //}
 }
 const page = async({params}) => {
   const data = params && await getData(params?.slug)
@@ -69,7 +68,7 @@ const page = async({params}) => {
       <Navbar/>
       <SearchHeader detail = {about?.data}/>
       <div className='headerTextContainer'>
-      <PostList intialData = {data?.data} params={'Celebs'}/>
+      <PostList intialData = {data?.data} params={params?.slug}/>
       <BottomNavigation/>
       </div>
     </div>
