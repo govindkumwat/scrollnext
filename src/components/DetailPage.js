@@ -10,7 +10,7 @@ const DetailPage = ({ data, closeButton, onClose, isOpen }) => {
 
   return (
     <div className='detailImage'>
-      <Image width={1000} height={1000} src={data?.url_overridden_by_dest} />
+      <Image width={1000} height={1000} src={data?.url_overridden_by_dest} alt={data?.title} />
       <div className='detailText'>{data?.title}</div>
       <div className='detailCross' onClick={() => router.back()}>
         <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">

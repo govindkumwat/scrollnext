@@ -112,7 +112,7 @@ const Navbar = () => {
 
                     {/*  */}
                     {searchResult?.filter((data) => (data?.data?.allow_images == true || data?.data?.allow_videos == true || data?.data?.allow_videogifs == true) && data?.data?.subreddit_type !== "restricted" && data?.data?.subscribers > 1000)?.map((item, index) => (
-                      <Link href={`/category/${item.data.url.split('/')[2]}`}>
+                      <Link href={`/category/${item.data.url.split('/')[2]}`} key={index}>
                       <div key={index} className='searchItems'>
                         <div className='searchthumbs'>
                           <img src={item?.data?.icon_img?.length > 0 ? item.data.icon_img : 'https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ='} />
