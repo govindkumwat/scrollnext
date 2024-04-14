@@ -20,7 +20,7 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 // }
 // }
 
-export const generateMetadata = async ({ params }) => {
+//export const generateMetadata = async ({ params }) => {
 //   try {
 //     const res = await axios.get(`https://reddit.com/r/${params.slug}/about.json`);
 //     if (!res.data) {
