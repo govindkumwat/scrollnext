@@ -37,7 +37,7 @@ export default async function Home() {
 <meta property="og:description" content="Description Here" />
 <meta property="og:image" content="image_url_here" />   
     <Navbar/>
-    <PostList intialData = {data?.data} params={params}/>
+    <PostList intialData = {data?.data} homeParams={params}/>
     <BottomNavigation/>
    </main>
   );

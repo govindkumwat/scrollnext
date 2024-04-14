@@ -7,13 +7,12 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { useParams } from 'next/navigation';
 
 
-const PostList = ({ initialData }) => {
+const PostList = ({ initialData, homeParams }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const params = useParams()
-    console.log(params)
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/r/${params.slug}.json?after=${pageParam}` : `https://api.reddit.com/r/${params.slug}.json`;
+        const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.slug}.json?after=${pageParam}` : `https://api.reddit.com/r/${homeParams || params.slug}.json`;
         const response = await axios.get(url);
         return response.data.data;
     };
