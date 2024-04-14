@@ -4,13 +4,16 @@ import ImageList from './ImageList'
 import { QueryClientProvider, QueryClient, useQueryClient, useInfiniteQuery } from "@tanstack/react-query"
 import axios from 'axios';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { useParams } from 'next/navigation';
 
 
-const PostList = ({ initialData, params }) => {
+const PostList = ({ initialData }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const params = useParams()
+    console.log(params)
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/r/${params}.json?after=${pageParam}` : `https://api.reddit.com/r/${params}.json`;
+        const url = pageParam ? `https://api.reddit.com/r/${params.slug}.json?after=${pageParam}` : `https://api.reddit.com/r/${params.slug}.json`;
         const response = await axios.get(url);
         return response.data.data;
     };
@@ -26,7 +29,7 @@ const PostList = ({ initialData, params }) => {
         queryKey: ['posts'],
         queryFn: fetchPosts,
         getNextPageParam: (lastPage) => lastPage?.after,
-        initialData: initialData, // Use initialData here
+        // initialData: initialData, // Use initialData here
   
     });
 
@@ -51,14 +54,10 @@ const PostList = ({ initialData, params }) => {
 
     const postData = data ? data.pages.map(page => page.children).flat() : [];
 
-    const handlePopup = () => {
-        alert('true')
-        onOpen();
-    }
 
     return (
         <>
-            <ImageList data={postData} handlePopup={handlePopup} />
+            <ImageList data={postData} />
         </>
     );
 }

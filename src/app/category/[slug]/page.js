@@ -54,7 +54,7 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 //     throw error; // Re-throw the error to be handled at a higher level
 //   }
 // }
-const page = async({params}) => {
+const page = async() => {
   // const data = params && await getData(params?.slug)
   // const about =  await getAboutData(params?.slug)
 
@@ -65,7 +65,7 @@ const page = async({params}) => {
       <Navbar/>
       <SearchHeader />
       <div className='headerTextContainer'>
-      <PostList params={params?.slug}/>
+      <PostList/>
       <BottomNavigation/>
       </div>
     </div>
