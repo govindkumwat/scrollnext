@@ -1,13 +1,9 @@
-import React from 'react'
-import DetailPage from '@/components/DetailPage'
 import axios from 'axios';
-import { Metadata } from 'next';
 import Image from 'next/image';
 
 export const generateMetadata = async({params}) => {
-
   try {
-    const res = await axios(`https://api.reddit.com/${params?.slug[3]}.json`);
+    const res = await axios(`https://api.reddit.com/${params?.slug}.json`);
     return {
       title: res.data[0]?.data?.children[0]?.data.title,
       description: `Scrollway ${res.data[0]?.data?.children[0]?.data?.title}`,
@@ -16,14 +12,11 @@ export const generateMetadata = async({params}) => {
     console.error('Error fetching data:', error);
     throw error; // Re-throw the error to propagate it up the call stack.
   }
-
-  
 }
-
 
 async function getSingle(params) {
   try {
-    const res = await axios(`https://api.reddit.com/${params?.slug[3]}.json`);
+    const res = await axios(`https://api.reddit.com/${params?.slug}.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -31,10 +24,9 @@ async function getSingle(params) {
   }
 }
 
-const page = async ({params, postData}) => {
-  console.log(params) 
+const page = async ({params}) => {
   const data = await getSingle(params)
-  console.log(data[0]?.data?.children[0])
+
   return (
     <>
     <div className='detailImage'>
@@ -46,7 +38,6 @@ const page = async ({params, postData}) => {
         </svg>
       </div>
     </div>
-    
     </>
   )
 }
