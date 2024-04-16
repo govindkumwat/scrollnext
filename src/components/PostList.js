@@ -8,7 +8,6 @@ import { useParams } from 'next/navigation';
 
 
 const PostList = ({ initialData, homeParams }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const params = useParams()
     const [meta, setMeta] = useState([])
 
@@ -27,17 +26,11 @@ const PostList = ({ initialData, homeParams }) => {
         fetchData();
     }, [params.slug]);
 
-    console.log(meta, 'metaData')
-
-
-
     const fetchPosts = async ({ pageParam = null }) => {
         const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.slug}.json?after=${pageParam}` : `https://api.reddit.com/r/${homeParams || params.slug}.json`;
         const response = await axios.get(url);
         return response.data.data;
     };
-
-    const queryClient = useQueryClient();
 
     const {
         data,
