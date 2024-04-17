@@ -12,19 +12,19 @@ const PostList = ({ initialData, homeParams }) => {
     const [meta, setMeta] = useState([])
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const getMeta = await axios(`https://api.reddit.com/r/${params.slug}/about.json`);
-                setMeta(getMeta.data.data);
-            } catch (error) {
-                // Handle error
-                console.error('Error fetching data:', error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const getMeta = await axios(`https://api.reddit.com/r/${params.slug}/about.json`);
+    //             setMeta(getMeta.data.data);
+    //         } catch (error) {
+    //             // Handle error
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
     
-        fetchData();
-    }, [params.slug]);
+    //     fetchData();
+    // }, [params.slug]);
 
     const fetchPosts = async ({ pageParam = null }) => {
         const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.slug}.json?after=${pageParam}` : `https://api.reddit.com/r/${homeParams || params.slug}.json`;
