@@ -16,7 +16,7 @@ import Image from 'next/image';
 
 async function getSingle(params) {
   try {
-    const res = await axios(`https://api.reddit.com/${'1c5ouvi'}.json`, {cache: 'no-store'});
+    const res = await axios(`https://api.reddit.com/1c5ouvi.json`, {cache: 'no-store'});
     // Check if data exists before returning
     if (!res.data || !res.data[0] || !res.data[0].data || !res.data[0].data.children) {
       throw new Error('Empty data response from Reddit API');
