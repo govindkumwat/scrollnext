@@ -16,7 +16,7 @@ export const generateMetadata = async ({ params }) => {
 
 async function getSingle(params) {
   try {
-    const res = await axios(`https://api.reddit.com/${params?.slug}.json`);
+    const res = await axios(`https://api.reddit.com/${params?.slug}.json`, {cache: 'no-store'});
     // Check if data exists before returning
     if (!res.data || !res.data[0] || !res.data[0].data || !res.data[0].data.children) {
       throw new Error('Empty data response from Reddit API');
@@ -35,7 +35,7 @@ const page = async ({ params }) => {
 
     return (
       <>
-        {postDetail[0]?.data?.children[0]?.data && ( // Conditionally render content
+        {/* {postDetail[0]?.data?.children[0]?.data && ( // Conditionally render content
           <div className='detailImage'>
           <Image width={1000} height={1000} src={data[0]?.data?.children[0]?.data?.url_overridden_by_dest} alt={data?.title} />
           <div className='detailText'>{data[0]?.data?.children[0]?.data?.title}</div>
@@ -45,7 +45,7 @@ const page = async ({ params }) => {
             </svg>
           </div>
         </div>
-        )}
+        )} */}
       </>
     );
   } catch (error) {
