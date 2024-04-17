@@ -1,22 +1,22 @@
 import axios from 'axios';
 import Image from 'next/image';
 
-export const generateMetadata = async ({ params }) => {
-  try {
-    const res = await axios(`https://api.reddit.com/${params?.slug}.json`);
-    return {
-      title: res.data[0]?.data?.children[0]?.data?.title,
-      description: `Scrollway ${res.data[0]?.data?.children[0]?.data?.title}`,
-    };
-  } catch (error) {
-    console.error('Error fetching metadata:', error);
-    throw error; // Re-throw for handling in page function
-  }
-};
+// export const generateMetadata = async ({ params }) => {
+//   try {
+//     const res = await axios(`https://api.reddit.com/${params?.slug}.json`);
+//     return {
+//       title: res.data[0]?.data?.children[0]?.data?.title,
+//       description: `Scrollway ${res.data[0]?.data?.children[0]?.data?.title}`,
+//     };
+//   } catch (error) {
+//     console.error('Error fetching metadata:', error);
+//     throw error; // Re-throw for handling in page function
+//   }
+// };
 
 async function getSingle(params) {
   try {
-    const res = await axios(`https://api.reddit.com/${params?.slug}.json`, {cache: 'no-store'});
+    const res = await axios(`https://api.reddit.com/${'1c5ouvi'}.json`, {cache: 'no-store'});
     // Check if data exists before returning
     if (!res.data || !res.data[0] || !res.data[0].data || !res.data[0].data.children) {
       throw new Error('Empty data response from Reddit API');
@@ -28,9 +28,9 @@ async function getSingle(params) {
   }
 }
 
-const page = async ({ params }) => {
+const page = async () => {
   try {
-    const data = await getSingle(params);
+    const data = await getSingle();
     const [postDetail] = await Promise.all([data]);
 
     return (
