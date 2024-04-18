@@ -6,18 +6,18 @@ import axios from 'axios'
 import { BottomNavigation } from '@/components/BottomNavigation'
 
 
-async function getData(params) {
-  try {
-    const res = await fetch(`https://api.reddit.com/r/pics.json`);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
-    }
-    return res.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; // Re-throw the error to be handled at a higher level
-  }
-}
+// async function getData(params) {
+//   try {
+//     const res = await fetch(`https://api.reddit.com/r/pics.json`);
+//     if (!res.ok) {
+//       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+//     }
+//     return res.json();
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error; // Re-throw the error to be handled at a higher level
+//   }
+// }
 
 export const generateMetadata = async ({ params }) => {
   try {
@@ -54,7 +54,7 @@ async function getAboutData(params) {
   }
 }
 const page = async({params}) => {
-    const data =  await getData(params?.slug)
+    // const data =  await getData(params?.slug)
    const about =  await getAboutData(params?.slug)
 
    console.log(about.data.title, 'slug')
@@ -66,7 +66,7 @@ const page = async({params}) => {
       <Navbar/>
       <SearchHeader detail={about?.data} />
       <div className='headerTextContainer'>
-      <PostList initialData= {data.data}/>
+      <PostList/>
       <BottomNavigation/>
       </div>
     </div>
