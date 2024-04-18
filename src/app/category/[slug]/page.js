@@ -8,16 +8,15 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 
 async function getData(params) {
   try {
-  const res = await fetch(`https://api.reddit.com/r/pics.json`)
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    const res = await fetch(`https://api.reddit.com/r/pics.json`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to be handled at a higher level
   }
- 
-  return res.json()
-} catch (error) {
-  console.error('Error fetching data:', error);
-  throw error;
-}
 }
 
 export const generateMetadata = async ({ params }) => {
