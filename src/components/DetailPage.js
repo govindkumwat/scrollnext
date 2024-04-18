@@ -5,26 +5,25 @@ import Image from 'next/image'
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 
-const DetailPage = ({ closeButton, onClose, isOpen, data }) => {
-  // const [data, setData] = useState([])
+
+const DetailPage = () => {
+  const [data, setData] = useState([])
   const router = useRouter()
   const  params = useParams()
 
-  // console.log(params)
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await axios(`https://api.reddit.com/${params?.slug[3]}.json`);
-  //       setData(res?.data[0]?.data?.children[0]?.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios(`https://api.reddit.com/${params?.slug}.json`);
+        setData(res?.data[0]?.data?.children[0]?.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
   
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
-  console.log(data)
   return (
     <div className='detailImage'>
       <Image width={1000} height={1000} src={data?.url_overridden_by_dest} alt={data?.title} />
