@@ -9,6 +9,7 @@ const SearchHeader = ({detail}) => {
 
 
 
+
   return (
     <div className='headerdetail'>
     <div className='headerImage'>

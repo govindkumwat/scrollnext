@@ -12,7 +12,7 @@ const PostList = ({ initialData, homeParams }) => {
     const params = useParams()
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.slug}.json?after=${pageParam}` : `https://api.reddit.com/r/${homeParams || params.slug}.json`;
+        const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.slug}.json?after=${pageParam}&sort=hot` : `https://api.reddit.com/r/${homeParams || params.slug}.json?sort=hot`;
         const response = await axios.get(url);
         return response.data.data;
     };
@@ -28,7 +28,7 @@ const PostList = ({ initialData, homeParams }) => {
         queryKey: ['posts'],
         queryFn: fetchPosts,
         getNextPageParam: (lastPage) => lastPage?.after,
-        // initialData: initialData, // Use initialData here
+         initialData: initialData, // Use initialData here
   
     });
 

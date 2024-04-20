@@ -33,7 +33,7 @@ const ImageList = ({ data }) => {
                         } else if (Data?.data?.post_hint === "image") {
                             return (
                                 //post title should be visible on hover
-                                <Link href={`/post${Data.data.permalink}`} key={index}>
+                                <Link href={`/post/${Data.data.id}`} key={index}>
                                 <div className='item' key={index} >
                                     {/* <Link href={`/post/${Data.data.permalink}`} > */}
                                         <Image width={1000} height={1000}

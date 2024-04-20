@@ -278,7 +278,15 @@
 
 .detailText {
   position: absolute;
-  bottom: 20px;
+  bottom: 25px;
+  left: 20px;
+  color: white;
+  z-index: 99;
+}
+
+.detailDesc {
+  position: absolute;
+  bottom: 25px;
   left: 20px;
   color: white;
   z-index: 99;
