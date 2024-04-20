@@ -58,8 +58,6 @@ async function getAboutData(params) {
 const page = async({params}) => {
    const data =  await getData(params?.slug)
   const about =  await getAboutData(params?.slug)
-
-  console.log(params, 'params')
   
   return (
     <div>
