@@ -84,7 +84,6 @@ const Navbar = () => {
             <>
               <ModalHeader className="flex flex-col gap-1">Search</ModalHeader>
               <ModalBody>
-
                 <div className="flex items-center w-full px-4 border-b border-default-400/50 dark:border-default-100">
                   <svg aria-hidden="true" fill="none" focusable="false" height="24" role="presentation" viewBox="0 0 24 24" width="24" className="text-default-400 text-lg"><path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2"></path><path d="M22 22L20 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2"></path></svg>
                   <input className="w-full px-2 h-14 font-sans text-lg outline-none rounded-none bg-transparent text-default-700 placeholder-default-500 dark:text-default-500 dark:placeholder:text-default-300" placeholder="Search..." cmdk-input="" autoFocus autoComplete="off" autoCorrect="off" spellCheck="false" aria-autoComplete="list" role="combobox" aria-expanded="true" aria-controls=":rji:" aria-labelledby=":rjj:" id=":rjk:" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
@@ -94,7 +93,6 @@ const Navbar = () => {
                 </div>
                 {isLoading && 'Please wait while fetching data for you...'}
                 {
-
                   searchResult?.length > 0 &&
                   <div className='searchResult'>
 
@@ -106,10 +104,6 @@ const Navbar = () => {
                         <p className='SearchItemName'>{deferredQuery}</p>
                       </div>
                     </div>
-
-
-
-
                     {/*  */}
                     {searchResult?.filter((data) => (data?.data?.allow_images == true || data?.data?.allow_videos == true || data?.data?.allow_videogifs == true) && data?.data?.subreddit_type !== "restricted" && data?.data?.subscribers > 1000)?.map((item, index) => (
                       <Link href={`/category/${item.data.url.split('/')[2]}`} key={index}>
@@ -123,7 +117,6 @@ const Navbar = () => {
                         </div>
                         <div className='subscribersandtype'>
                           {/* convert subscribers number in k, m */}
-
                           <p className='subscribers'>{formatSubscribers(item.data.subscribers)}</p>
                           <p className='contentType'>{item.data.over18 ? 'NSFW' : ''}</p>
                         </div>
@@ -133,7 +126,6 @@ const Navbar = () => {
                   </div>
                 }
               </ModalBody>
-
             </>
           )}
         </ModalContent>
@@ -141,7 +133,6 @@ const Navbar = () => {
       <Link href={'/'}>
       <div className='navLogo'>SCROLLWAY</div>
       </Link>
-      {/* <div onClick={() => window.history.replaceState(null, '', '/about') }>Raju</div> */}
       <div className='navSocial'>
         <Link href={'/about'}>
         <div className='categoryname'>

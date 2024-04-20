@@ -1,15 +1,7 @@
 import React from 'react'
 import { useParams } from 'next/navigation'
 
-
-
-
-
 const SearchHeader = ({detail}) => {
-
-
-
-
   return (
     <div className='headerdetail'>
     <div className='headerImage'>

@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react"
 import React from "react"
 
 class ErrorBoundary extends React.Component {
@@ -23,12 +24,12 @@ class ErrorBoundary extends React.Component {
         return (
           <div>
             <h2>Oops, there is an error!</h2>
-            <button
+            <Button
               type="button"
               onClick={() => this.setState({ hasError: false })}
             >
-              Try again?
-            </button>
+             Try again?
+            </Button>
           </div>
         )
       }
