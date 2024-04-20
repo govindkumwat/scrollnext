@@ -1,8 +1,6 @@
 import React from 'react'
 import DetailPage from '@/components/DetailPage'
 import axios from 'axios';
-import { Metadata } from 'next';
-
 
 export async function generateMetadata(
   { params },

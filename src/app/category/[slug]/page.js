@@ -23,7 +23,7 @@ async function getData(params) {
 
 export const generateMetadata = async ({ params }) => {
   try {
-    const res = await axios.get(`https://api.reddit.com/r/${params.slug}/about.json`);
+    const res = await axios.get(`https://api.reddit.com/r/${params?.slug}/about.json`);
     if (!res.data) {
       throw new Error('Failed to fetch data');
     }
@@ -45,7 +45,7 @@ export const generateMetadata = async ({ params }) => {
 
 async function getAboutData(params) {
   try {
-    const res = await fetch(`https://api.reddit.com/r/${params.slug}/about.json`);
+    const res = await fetch(`https://api.reddit.com/r/${params?.slug}/about.json`);
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
     }
