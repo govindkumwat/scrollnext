@@ -30,7 +30,6 @@ const page = async(params) => {
   const data = await getData(params.params.slug);
 
   return (
-
     <>
     <Navbar/>
     <SearchHeader detail={params?.params?.slug}/>

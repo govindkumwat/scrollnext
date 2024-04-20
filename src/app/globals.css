@@ -329,6 +329,11 @@
   display: none;
 }
 
+.eroro {
+  text-align: center;
+  margin-top: 50px;
+}
+
 
 @media screen and (max-width: 767px) {
   .navbarContainer {
