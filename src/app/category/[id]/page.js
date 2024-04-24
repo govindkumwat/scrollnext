@@ -7,18 +7,13 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 
 
 async function getData(params) {
-  console.log(params, 'params')
   try {
-  const res = await fetch(`https://api.reddit.com/r/${params.id}.json`)
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    const res = await axios(`https://api.reddit.com/r/${params.id}.json`);
+    return res.data; // Access the JSON data from the response object
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to propagate it up the call stack.
   }
- 
-  return res.json()
-} catch (error) {
-  console.error('Error fetching data:', error);
-  throw error;
-}
 }
 
 // export const generateMetadata = async ({ params }) => {
@@ -41,20 +36,16 @@ async function getData(params) {
 //   }
 // };
 
- 
-
 async function getAboutData(params) {
   try {
-    const res = await fetch(`https://api.reddit.com/r/${params?.id}/about.json`);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
-    }
-    return res.json();
+    const res = await axios(`https://api.reddit.com/r/${params?.id}/about.json`);
+    return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
-    throw error; // Re-throw the error to be handled at a higher level
+    throw error; // Re-throw the error to propagate it up the call stack.
   }
 }
+
 const page = async({params}) => {
    const data =  await getData(params)
   const about =  await getAboutData(params)

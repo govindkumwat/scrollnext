@@ -14,7 +14,7 @@ export const generateMetadata = async () => {
 
 async function getData(params) {
   try {
-  const res = await fetch(`https://www.api.reddits.com/r/${params}.json`)
+  const res = await fetch(`https://api.reddits.com/r/${params}.json`)
   if (!res.ok) {
     throw new Error('Failed to fetch data for you')
   }
