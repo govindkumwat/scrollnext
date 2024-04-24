@@ -9,7 +9,7 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 async function getData(params) {
   console.log(params, 'params')
   try {
-  const res = await fetch(`https://api.reddit.com/r/${params.slug}.json`)
+  const res = await fetch(`https://api.reddit.com/r/${params.id}.json`)
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
@@ -23,7 +23,7 @@ async function getData(params) {
 
 export const generateMetadata = async ({ params }) => {
   try {
-    const res = await axios.get(`https://api.reddit.com/r/${params?.slug}/about.json`);
+    const res = await axios.get(`https://api.reddit.com/r/${params?.id}/about.json`);
     if (!res.data) {
       throw new Error('Failed to fetch data');
     }
@@ -45,7 +45,7 @@ export const generateMetadata = async ({ params }) => {
 
 async function getAboutData(params) {
   try {
-    const res = await fetch(`https://api.reddit.com/r/${params?.slug}/about.json`);
+    const res = await fetch(`https://api.reddit.com/r/${params?.id}/about.json`);
     if (!res.ok) {
       throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
     }
