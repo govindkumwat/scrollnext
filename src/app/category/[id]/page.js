@@ -21,25 +21,25 @@ async function getData(params) {
 }
 }
 
-export const generateMetadata = async ({ params }) => {
-  try {
-    const res = await axios.get(`https://api.reddit.com/r/${params?.id}/about.json`);
-    if (!res.data) {
-      throw new Error('Failed to fetch data');
-    }
+// export const generateMetadata = async ({ params }) => {
+//   try {
+//     const res = await axios.get(`https://api.reddit.com/r/${params?.id}/about.json`);
+//     if (!res.data) {
+//       throw new Error('Failed to fetch data');
+//     }
 
 
-    // Assuming you want to access the title from the first post in the subreddit
+//     // Assuming you want to access the title from the first post in the subreddit
 
-    return {
-      title: res.data.data.title + '-' + 'Scrollway',
-      description: `Scrollway ${res.data.data.public_description}`,
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
+//     return {
+//       title: res.data.data.title + '-' + 'Scrollway',
+//       description: `Scrollway ${res.data.data.public_description}`,
+//     };
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// };
 
  
 
