@@ -8,7 +8,7 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 
 async function getData(params) {
   try {
-    const res = await axios(`https://api.reddit.com/r/${params.id}.json`);
+    const res = await axios(`https://reddit.com/r/${params.id}.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -38,7 +38,7 @@ async function getData(params) {
 
 async function getAboutData(params) {
   try {
-    const res = await axios(`https://api.reddit.com/r/${params?.id}/about.json`);
+    const res = await axios(`https://reddit.com/r/${params?.id}/about.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
