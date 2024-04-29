@@ -16,36 +16,36 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 //   }
 // }
 
-export const generateMetadata = async ({ params }) => {
-  try {
-    const res = await axios.get(`https://www.reddit.com/r/${params?.slug}/about.json`);
-    if (!res.data) {
-      throw new Error('Failed to fetch data');
-    }
-    // Assuming you want to access the title from the first post in the subreddit
-    return {
-      title: res.data.data.title + '-' + 'Scrollway',
-      description: `Scrollway ${res.data.data.public_description}`,
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-};
-
-// async function getAboutData(params) {
+// export const generateMetadata = async ({ params }) => {
 //   try {
-//     const res = await axios(`https://www.reddit.com/r/${params?.slug}/about.json`);
-//     return res.data; // Access the JSON data from the response object
+//     const res = await axios.get(`https://www.reddit.com/r/${params?.slug}/about.json`);
+//     if (!res.data) {
+//       throw new Error('Failed to fetch data');
+//     }
+//     // Assuming you want to access the title from the first post in the subreddit
+//     return {
+//       title: res.data.data.title + '-' + 'Scrollway',
+//       description: `Scrollway ${res.data.data.public_description}`,
+//     };
 //   } catch (error) {
 //     console.error('Error fetching data:', error);
-//     throw error; // Re-throw the error to propagate it up the call stack.
+//     throw error;
 //   }
-// }
+// };
+
+async function getAboutData(params) {
+  try {
+    const res = await axios(`https://www.reddit.com/r/${params?.slug}/about.json`);
+    return res.data; // Access the JSON data from the response object
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to propagate it up the call stack.
+  }
+}
 
 const page = async({params}) => {
   //  const data =  await getData(params)
-  // const about =  await getAboutData(params)
+  const about =  await getAboutData(params)
   
   return (
     <div>
