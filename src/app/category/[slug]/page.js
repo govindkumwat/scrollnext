@@ -6,15 +6,15 @@ import axios from 'axios'
 import { BottomNavigation } from '@/components/BottomNavigation'
 
 
-async function getData(params) {
-  try {
-    const res = await axios(`https://www.reddit.com/r/${params.slug}.json`);
-    return res.data; // Access the JSON data from the response object
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; // Re-throw the error to propagate it up the call stack.
-  }
-}
+// async function getData(params) {
+//   try {
+//     const res = await axios(`https://www.reddit.com/r/${params.slug}.json`);
+//     return res.data; // Access the JSON data from the response object
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error; // Re-throw the error to propagate it up the call stack.
+//   }
+// }
 
 // export const generateMetadata = async ({ params }) => {
 //   try {
