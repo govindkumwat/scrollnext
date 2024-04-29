@@ -6,15 +6,15 @@ import axios from 'axios'
 import { BottomNavigation } from '@/components/BottomNavigation'
 
 
-// async function getData(params) {
-//   try {
-//     const res = await axios(`https://www.reddit.com/r/${params.slug}.json`);
-//     return res.data; // Access the JSON data from the response object
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-//     throw error; // Re-throw the error to propagate it up the call stack.
-//   }
-// }
+async function getData(params) {
+  try {
+    const res = await axios(`https://www.reddit.com/r/${params.slug}.json`);
+    return res.data; // Access the JSON data from the response object
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error to propagate it up the call stack.
+  }
+}
 
 // export const generateMetadata = async ({ params }) => {
 //   try {
@@ -33,19 +33,19 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 //   }
 // };
 
-async function getAboutData(params) {
-  try {
-    const res = await axios(`https://www.reddit.com/r/${params?.slug}/about.json`);
-    return res.data; // Access the JSON data from the response object
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; // Re-throw the error to propagate it up the call stack.
-  }
-}
+// async function getAboutData(params) {
+//   try {
+//     const res = await axios(`https://www.reddit.com/r/${params?.slug}/about.json`);
+//     return res.data; // Access the JSON data from the response object
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error; // Re-throw the error to propagate it up the call stack.
+//   }
+// }
 
 const page = async({params}) => {
-  //  const data =  await getData(params)
-  const about =  await getAboutData(params)
+  const data =  await getData(params)
+  // const about =  await getAboutData(params)
   
   return (
     <div>
@@ -59,8 +59,8 @@ const page = async({params}) => {
 
       <div className='headerTextContainer'>
         <Suspense fallback='loading'>
-      {/* <PostList data={data?.data?.children[0]}/> */}
-      <PostList />
+      <PostList data={data?.data?.children[0]}/>
+      {/* <PostList /> */}
       </Suspense>
       <BottomNavigation/>
       </div>
