@@ -22,7 +22,7 @@ export async function generateMetadata(
 }
 
 
-async function getSingle(params) {
+async function getSingle({params}) {
   try {
     const res = await axios(`https://api.reddit.com/${params?.id}.json`);
     return res.data; // Access the JSON data from the response object
