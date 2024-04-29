@@ -44,7 +44,7 @@ import { BottomNavigation } from '@/components/BottomNavigation'
 // }
 
 const page = async({params}) => {
-  const data =  await getData(params)
+  // const data =  await getData(params)
   // const about =  await getAboutData(params)
   
   return (
