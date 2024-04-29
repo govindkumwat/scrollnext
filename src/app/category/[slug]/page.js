@@ -53,14 +53,14 @@ const page = async({params}) => {
       <Navbar/>
       </Suspense>
       <Suspense fallback='loading'>
-      {/* <SearchHeader  /> */}
-      <SearchHeader detail={about?.data} />
+      <SearchHeader  />
+      {/* <SearchHeader detail={about?.data} /> */}
       </Suspense>
 
       <div className='headerTextContainer'>
         <Suspense fallback='loading'>
-      <PostList data={data?.data?.children[0]}/>
-      {/* <PostList /> */}
+      {/* <PostList data={data?.data?.children[0]}/> */}
+      <PostList />
       </Suspense>
       <BottomNavigation/>
       </div>
