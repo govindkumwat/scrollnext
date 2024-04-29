@@ -4,6 +4,7 @@ import { BottomNavigation } from "@/components/BottomNavigation";
 import Navbar from "@/components/Navbar";
 import QuerySearch from "@/components/QuerySearch";
 import SearchHeader from "@/components/SearchHeader";
+import { Suspense } from "react";
 
 export const generateMetadata = async ({params}) => {
   return {
@@ -31,9 +32,15 @@ const page = async(params) => {
 
   return (
     <>
+    <Suspense fallback='Loading'>
     <Navbar/>
+    </Suspense>
+    <Suspense fallback='Loading'>
     <SearchHeader detail={params?.params?.slug}/>
+    </Suspense>
+    <Suspense fallback='Loading'>
     <QuerySearch intialData = {data?.data} params={params?.params?.slug}/>
+    </Suspense>
     <BottomNavigation/>
     </>
      

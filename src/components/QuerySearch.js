@@ -22,8 +22,7 @@ const QuerySearch = ({ initialData, params }) => {
         queryFn: fetchPosts,
         getNextPageParam: (lastPage) => lastPage?.after,
         initialData: initialData, // Use initialData here
-        keepPreviousData: true,
-        staleTime: 60 * 1000,
+        keepPreviousData: false,
     });
 
     useEffect(() => {
@@ -43,7 +42,7 @@ const QuerySearch = ({ initialData, params }) => {
 
         // Clean up the event listener when component unmounts
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [fetchNextPage, isFetchingNextPage, hasNextPage]);
+    }, [fetchNextPage, isFetchingNextPage, hasNextPage, params]);
 
     const postData = data ? data.pages.map(page => page.children).flat() : [];
 

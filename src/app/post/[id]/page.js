@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import DetailPage from '@/components/DetailPage'
 import axios from 'axios';
 
@@ -32,12 +32,14 @@ async function getSingle(params) {
   }
 }
 
-const page = async ({params, postData}) => {  
+const page = async ({params}) => {  
   const data =  await getSingle(params);
 
   return (
     <>
+    <Suspense fallback={'Loading..'}>
     <DetailPage data={data[0]?.data?.children[0]?.data}/>
+    </Suspense>
     </>
   )
 }
