@@ -334,6 +334,14 @@
   margin-top: 50px;
 }
 
+img::before {
+  display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: 'blue'
+}
+
 
 @media screen and (max-width: 767px) {
   .navbarContainer {

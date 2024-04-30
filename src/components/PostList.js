@@ -27,7 +27,7 @@ const PostList = ({ initialData, homeParams }) => {
     }, [params.id]);
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.id}.json?after=${pageParam}&sort=hot` : `https://api.reddit.com/r/${homeParams || params.id}.json?sort=hot`;
+        const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.id}/new.json?after=${pageParam}` : `https://api.reddit.com/r/${homeParams || params.id}/new.json`;
         const response = await axios.get(url);
         return response.data.data;
     };
