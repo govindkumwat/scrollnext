@@ -10,7 +10,7 @@ async function getData({params}) {
   try {
     const id = params.slug
     console.log(id, 'params id')
-    const res = await axios(`https://api.reddit.com/r/${id}.json`);
+    const res = await axios(`https://www.reddit.com/r/${id}.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -23,7 +23,7 @@ export const generateMetadata = async ({ params }) => {
     
     const id = params.slug
     console.log(id, 'id in meta')
-    const res = await axios.get(`https://api.reddit.com/r/${id}/about.json`);
+    const res = await axios.get(`https://www.reddit.com/r/${id}/about.json`);
     if (!res.data) {
       throw new Error('Failed to fetch data');
     }
@@ -41,7 +41,7 @@ export const generateMetadata = async ({ params }) => {
 async function getAboutData({params}) {
   try {
     const id = params.slug
-    const res = await axios(`https://api.reddit.com/r/${id}/about.json`);
+    const res = await axios(`https://www.reddit.com/r/${id}/about.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);

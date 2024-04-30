@@ -7,7 +7,7 @@ import axios from 'axios';
 const QuerySearch = ({ initialData, params }) => {
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/search.json?q=${params}&after=${pageParam}&include_over_18=true` : `https://api.reddit.com/search.json?q=${params}&&include_over_18=true`;
+        const url = pageParam ? `https://www.reddit.com/search.json?q=${params}&after=${pageParam}&include_over_18=true` : `https://www.reddit.com/search.json?q=${params}&&include_over_18=true`;
         const response = await axios.get(url);
         return response.data.data;
     };

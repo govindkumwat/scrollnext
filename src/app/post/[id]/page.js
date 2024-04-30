@@ -10,7 +10,7 @@ export async function generateMetadata(
   const id = params.id
  
   // fetch data
-  const metaData = await axios(`https://api.reddit.com/${id}.json`);
+  const metaData = await axios(`https://www.reddit.com/${id}.json`);
  
   // optionally access and extend (rather than replace) parent metadata
  
@@ -26,7 +26,7 @@ async function getSingle({params}) {
   try {
     const id = params.id
     console.log(id, 'id that we need')
-    const res = await axios(`https://api.reddit.com/${id}.json`);
+    const res = await axios(`https://www.reddit.com/${id}.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
