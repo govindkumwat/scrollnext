@@ -24,7 +24,9 @@ export async function generateMetadata(
 
 async function getSingle({params}) {
   try {
-    const res = await axios(`https://api.reddit.com/${params?.id}.json`);
+    const id = params.id
+    console.log(id, 'id that we need')
+    const res = await axios(`https://api.reddit.com/${id}.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -32,8 +34,11 @@ async function getSingle({params}) {
   }
 }
 
-const page = async ({params}) => {  
+const page = async (params) => {  
+  console.log(params, 'this is params we need')
   const data =  await getSingle(params);
+
+  
 
   return (
     <>
