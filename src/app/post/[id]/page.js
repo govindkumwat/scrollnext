@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import DetailPage from '@/components/DetailPage'
 import axios from 'axios';
 
@@ -10,7 +10,7 @@ export async function generateMetadata(
   const id = params.id
  
   // fetch data
-  const metaData = await axios(`https://api.reddit.com/${id}.json`);
+  const metaData = await axios(`https://www.reddit.com/${id}.json`);
  
   // optionally access and extend (rather than replace) parent metadata
  
@@ -22,9 +22,11 @@ export async function generateMetadata(
 }
 
 
-async function getSingle(params) {
+async function getSingle({params}) {
   try {
-    const res = await axios(`https://api.reddit.com/${params?.id}.json`);
+    const id = params.id
+    console.log(id, 'id that we need')
+    const res = await axios(`https://www.reddit.com/${id}.json`);
     return res.data; // Access the JSON data from the response object
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -32,12 +34,17 @@ async function getSingle(params) {
   }
 }
 
-const page = async ({params, postData}) => {  
+const page = async (params) => {  
+  console.log(params, 'this is params we need')
   const data =  await getSingle(params);
+
+  
 
   return (
     <>
+    <Suspense fallback={'Loading..'}>
     <DetailPage data={data[0]?.data?.children[0]?.data}/>
+    </Suspense>
     </>
   )
 }

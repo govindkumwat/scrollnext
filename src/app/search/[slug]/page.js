@@ -4,6 +4,7 @@ import { BottomNavigation } from "@/components/BottomNavigation";
 import Navbar from "@/components/Navbar";
 import QuerySearch from "@/components/QuerySearch";
 import SearchHeader from "@/components/SearchHeader";
+import { Suspense } from "react";
 
 export const generateMetadata = async ({params}) => {
   return {
@@ -14,7 +15,7 @@ export const generateMetadata = async ({params}) => {
 
 async function getData(params) {
   try { 
-  const res = await fetch(`https://api.reddit.com/search.json?q=${params}&include_over_18=true`)
+  const res = await fetch(`https://www.reddit.com/search.json?q=${params}&include_over_18=true`)
   if (!res.ok) {
     throw new Error('Failed to fetch data for you')
   }
@@ -31,9 +32,15 @@ const page = async(params) => {
 
   return (
     <>
+    <Suspense fallback='Loading'>
     <Navbar/>
+    </Suspense>
+    <Suspense fallback='Loading'>
     <SearchHeader detail={params?.params?.slug}/>
+    </Suspense>
+    <Suspense fallback='Loading'>
     <QuerySearch intialData = {data?.data} params={params?.params?.slug}/>
+    </Suspense>
     <BottomNavigation/>
     </>
      

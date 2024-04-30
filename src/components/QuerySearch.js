@@ -7,7 +7,7 @@ import axios from 'axios';
 const QuerySearch = ({ initialData, params }) => {
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/search.json?q=${params}&after=${pageParam}&include_over_18=true` : `https://api.reddit.com/search.json?q=${params}&&include_over_18=true`;
+        const url = pageParam ? `https://www.reddit.com/search.json?q=${params}&after=${pageParam}&include_over_18=true` : `https://www.reddit.com/search.json?q=${params}&&include_over_18=true`;
         const response = await axios.get(url);
         return response.data.data;
     };
@@ -22,8 +22,7 @@ const QuerySearch = ({ initialData, params }) => {
         queryFn: fetchPosts,
         getNextPageParam: (lastPage) => lastPage?.after,
         initialData: initialData, // Use initialData here
-        keepPreviousData: true,
-        staleTime: 60 * 1000,
+        keepPreviousData: false,
     });
 
     useEffect(() => {
@@ -43,7 +42,7 @@ const QuerySearch = ({ initialData, params }) => {
 
         // Clean up the event listener when component unmounts
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [fetchNextPage, isFetchingNextPage, hasNextPage]);
+    }, [fetchNextPage, isFetchingNextPage, hasNextPage, params]);
 
     const postData = data ? data.pages.map(page => page.children).flat() : [];
 

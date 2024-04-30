@@ -39,7 +39,7 @@ const Navbar = () => {
     // Define your fetchData function
     const fetchData = () => {
       setLoading(true);
-      axios(`https://api.reddit.com/subreddits/search.json?q=${deferredQuery}&include_over_18=${'on'}&limit=150&t=all`)
+      axios(`https://www.reddit.com/subreddits/search.json?q=${deferredQuery}&include_over_18=${'on'}&limit=150&t=all`)
         .then((res) => {
           setSearchResult(res?.data?.data?.children);
           setLoading(false);

@@ -15,7 +15,7 @@ const PostList = ({ initialData, homeParams }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const getMeta = await axios(`https://api.reddit.com/r/${params.id}/about.json`);
+                const getMeta = await axios(`https://www.reddit.com/r/${params.slug}/about.json`);
                 setMeta(getMeta.data.data);
             } catch (error) {
                 // Handle error
@@ -24,10 +24,10 @@ const PostList = ({ initialData, homeParams }) => {
         };
     
         fetchData();
-    }, [params.id]);
+    }, [params.slug]);
 
     const fetchPosts = async ({ pageParam = null }) => {
-        const url = pageParam ? `https://api.reddit.com/r/${homeParams || params.id}/new.json?after=${pageParam}` : `https://api.reddit.com/r/${homeParams || params.id}/new.json`;
+        const url = pageParam ? `https://www.reddit.com/r/${homeParams || params.slug}.json?after=${pageParam}&sort=hot` : `https://www.reddit.com/r/${homeParams || params.slug}.json?sort=hot`;
         const response = await axios.get(url);
         return response.data.data;
     };
@@ -41,7 +41,7 @@ const PostList = ({ initialData, homeParams }) => {
         queryKey: ['posts'],
         queryFn: fetchPosts,
         getNextPageParam: (lastPage) => lastPage?.after,
-         initialData: initialData, // Use initialData here
+        initialData: initialData, // Use initialData here
   
     });
 
