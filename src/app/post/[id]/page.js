@@ -2,24 +2,24 @@ import React, { Suspense } from 'react'
 import DetailPage from '@/components/DetailPage'
 import axios from 'axios';
 
-export async function generateMetadata(
-  { params },
+// export async function generateMetadata(
+//   { params },
 
-) {
-  // read route params
-  const id = params.id
+// ) {
+//   // read route params
+//   const id = params.id
  
-  // fetch data
-  const metaData = await axios(`https://www.reddit.com/${id}.json`);
+//   // fetch data
+//   const metaData = await axios(`https://www.reddit.com/${id}.json`);
  
-  // optionally access and extend (rather than replace) parent metadata
+//   // optionally access and extend (rather than replace) parent metadata
  
-  return {
-    title: metaData.data[0]?.data?.children[0]?.data.title,
-    description: `Scrollway ${metaData.data[0]?.data?.children[0]?.data?.title}`
+//   return {
+//     title: metaData.data[0]?.data?.children[0]?.data.title,
+//     description: `Scrollway ${metaData.data[0]?.data?.children[0]?.data?.title}`
    
-  }
-}
+//   }
+// }
 
 
 async function getSingle({params}) {
