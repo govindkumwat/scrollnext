@@ -22,26 +22,26 @@ import axios from 'axios';
 // }
 
 
-async function getSingle({params}) {
-  try {
-    const id = params.id
-    const res = await axios(`https://www.reddit.com/${id}.json`);
-    return res.data; 
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error; 
-  }
-}
+// async function getSingle({params}) {
+//   try {
+//     const id = params.id
+//     const res = await axios(`https://www.reddit.com/${id}.json`);
+//     return res.data; 
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error; 
+//   }
+// }
 
 const page = async (params) => {  
-  const data =  await getSingle(params);
+  // const data =  await getSingle(params);
 
   
 
   return (
     <>
     <Suspense fallback={'Loading..'}>
-    <DetailPage data={data[0]?.data?.children[0]?.data}/>
+    <DetailPage />
     </Suspense>
     </>
   )
