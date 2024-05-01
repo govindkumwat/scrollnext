@@ -25,17 +25,15 @@ import axios from 'axios';
 async function getSingle({params}) {
   try {
     const id = params.id
-    console.log(id, 'id that we need')
     const res = await axios(`https://www.reddit.com/${id}.json`);
-    return res.data; // Access the JSON data from the response object
+    return res.data; 
   } catch (error) {
     console.error('Error fetching data:', error);
-    throw error; // Re-throw the error to propagate it up the call stack.
+    throw error; 
   }
 }
 
 const page = async (params) => {  
-  console.log(params, 'this is params we need')
   const data =  await getSingle(params);
 
   
