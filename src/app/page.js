@@ -27,7 +27,7 @@ async function getData(params) {
  
 
 export default async function Home() {
-  const params = 'pics'
+  const params = 'ImaginaryAetherpunk+ImaginaryAirships+ImaginaryAviation+ImaginaryArmor+ImaginaryBlueprints+ImaginaryCybernetics+ImaginaryCyberpunk+ImaginaryDerelicts+ImaginaryDieselpunk+ImaginaryFutureWar+ImaginaryFuturism+ImaginaryMechs+ImaginaryPortals+ImaginaryRobotics+ImaginaryScience+ImaginaryStarships+ImaginarySteampunk+ImaginaryVehicles+ImaginaryVessels+ImaginaryWarships+ImaginaryWeaponry+ImaginaryBeasts+ImaginaryBehemoths+ImaginaryDemons+ImaginaryDinosaurs+ImaginaryDragons+ImaginaryElementals+ImaginaryHorrors+ImaginaryLeviathans+ImaginaryMonsterGirls+ImaginarySpirits+ImaginaryUndead+ImaginaryVampires+ImaginaryWerewolves+ImaginaryWorldEaters+ImaginaryArchitecture+ImaginaryAsylums+ImaginaryCastles+ImaginaryDwellings+ImaginaryFactories+ImaginaryInteriors+ImaginaryMonuments+ImaginaryPrisons+ImaginaryRuins+ImaginaryTaverns+ImaginaryTemples+ImaginaryTowers+ImaginaryVillages+ImaginaryWalls+ImaginaryAnimals+ImaginaryCanyons+ImaginaryCaves+ImaginaryDeserts+ImaginaryForests+ImaginaryGlaciers+ImaginaryIslands+ImaginaryLakes'
   const data = await getData(params)
 
 
