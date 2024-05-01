@@ -10,11 +10,10 @@ const DetailPage = ({ closeButton, onClose, isOpen }) => {
   const router = useRouter()
   const  params = useParams()
 
-  console.log(params)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios(`https://api.reddit.com/${params?.slug[3]}.json`);
+        const res = await axios(`https://api.reddit.com/${params?.id}.json`);
         setData(res?.data[0]?.data?.children[0]?.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,8 +23,10 @@ const DetailPage = ({ closeButton, onClose, isOpen }) => {
     fetchData();
   }, []);
 
+
   return (
     <div className='detailImage'>
+      <title>{data?.title}</title>
       <Image width={1000} height={1000} src={data?.url_overridden_by_dest} alt={data?.title} />
       <h1 className='detailText'>{data?.title}</h1>
       <h1 className='detailDesc'>{data?.body}</h1>

@@ -1,7 +1,38 @@
-import React from 'react'
-import { useParams } from 'next/navigation'
+'use client'
 
-const SearchHeader = ({detail}) => {
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import axios from 'axios';
+
+const SearchHeader = ({params}) => {
+  
+  const [detail, setDetail] = useState([])
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = params.params.slug && await fetch(`https://www.reddit.com/r/${params.params.slug}/about.json`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setDetail(data?.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+    // Clean-up function to cancel any pending requests if component unmounts or id changes
+    return () => {
+      // Your clean-up code here, if any
+    };
+  }, [params]);
+
+  console.log(detail, 'detail')
+
   return (
     <div className='headerdetail'>
     <div className='headerImage'>
