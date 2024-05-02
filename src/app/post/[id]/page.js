@@ -10,7 +10,9 @@ export async function generateMetadata(
   const id = params.id
  
   // fetch data
-  const metaData = await axios(`https://www.reddit.com/${id}.json`);
+  const metaData = await fetch(`https://www.reddit.com/${id}.json`).then((res) => res.json())
+
+  // const metaData = await axios(`https://www.reddit.com/${id}.json`);
  
   // optionally access and extend (rather than replace) parent metadata
  
