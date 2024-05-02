@@ -27,7 +27,7 @@ const DetailPage = ({ closeButton, onClose, isOpen }) => {
   return (
     <div className='detailImage'>
       <title>{data?.title}</title>
-      <img  src={data?.url_overridden_by_dest} alt={data?.title} />
+      <img src={data?.url_overridden_by_dest} alt={data?.title} />
       <h1 className='detailText'>{data?.title}</h1>
       <h1 className='detailDesc'>{data?.body}</h1>
       <div className='detailCross' onClick={() => router.back()}>
